@@ -9,57 +9,42 @@ class PackageController extends Controller
 {
     public function index(): Response
     {
-        $packages = [
-            [
-                'id'          => 'VX-LT10',
-                'name'        => 'Lite',
-                'speed'       => '10 Mbps Fiber',
-                'price'       => 'Rp 150.000',
-                'subscribers' => 120,
-                'color'       => 'blue',
-                'icon'        => 'wifi',
-            ],
-            [
-                'id'          => 'VX-ST20',
-                'name'        => 'Standard',
-                'speed'       => '20 Mbps Fiber',
-                'price'       => 'Rp 300.000',
-                'subscribers' => 450,
-                'color'       => 'yellow',
-                'icon'        => 'zap',
-            ],
-            [
-                'id'          => 'VX-PR50',
-                'name'        => 'Pro',
-                'speed'       => '50 Mbps Fiber',
-                'price'       => 'Rp 550.000',
-                'subscribers' => 890,
-                'color'       => 'purple',
-                'icon'        => 'rocket',
-            ],
-            [
-                'id'          => 'VX-UL100',
-                'name'        => 'Ultra',
-                'speed'       => '100 Mbps Fiber',
-                'price'       => 'Rp 950.000',
-                'subscribers' => 210,
-                'color'       => 'pink',
-                'icon'        => 'gem',
-            ],
-        ];
+        $dbPackages = \App\Models\Package::all();
 
-        $package_config = [
-            ['name' => 'Lite Package',     'description' => 'Entry Level',         'bandwidth' => '5Mbps / 10Mbps',   'price' => 'Rp 150.000', 'status' => 'Active'],
-            ['name' => 'Standard Package', 'description' => 'Home Use',            'bandwidth' => '10Mbps / 20Mbps',  'price' => 'Rp 300.000', 'status' => 'Active'],
-            ['name' => 'Ultra Package',    'description' => 'Pro Gamer/Business',  'bandwidth' => '50Mbps / 100Mbps', 'price' => 'Rp 950.000', 'status' => 'Disabled'],
-        ];
+        $packages = $dbPackages->map(function ($pkg) {
+            return [
+                'id'          => $pkg->packet_id,
+                'name'        => $pkg->name,
+                'speed'       => $pkg->speed,
+                'price'       => 'Rp ' . number_format($pkg->price, 0, ',', '.'),
+                'subscribers' => $pkg->subscribers,
+                'color'       => $pkg->color_theme,
+                'icon'        => $pkg->icon,
+            ];
+        });
 
-        $bandwidth_usage = [
-            ['label' => 'Pro (50Mbps)',      'pct' => 53.2, 'color' => 'bg-blue-500'],
-            ['label' => 'Standard (20Mbps)', 'pct' => 26.9, 'color' => 'bg-indigo-500'],
-            ['label' => 'Ultra (100Mbps)',   'pct' => 12.5, 'color' => 'bg-yellow-400'],
-            ['label' => 'Lite (10Mbps)',     'pct' => 7.4,  'color' => 'bg-slate-500'],
-        ];
+        $package_config = $dbPackages->map(function ($pkg) {
+            return [
+                'name'        => $pkg->name . ' Package',
+                'description' => 'Managed Tier', // or another column
+                'bandwidth'   => $pkg->bandwidth_up . 'Mbps / ' . $pkg->bandwidth_down . 'Mbps',
+                'price'       => 'Rp ' . number_format($pkg->price, 0, ',', '.'),
+                'status'      => $pkg->status,
+            ];
+        });
+
+        $totalSubscribers = $dbPackages->sum('subscribers');
+        
+        $colorMap = ['blue' => 'bg-slate-500', 'yellow' => 'bg-indigo-500', 'purple' => 'bg-blue-500', 'pink' => 'bg-yellow-400'];
+
+        $bandwidth_usage = $dbPackages->sortByDesc('subscribers')->map(function ($pkg) use ($totalSubscribers, $colorMap) {
+            $pct = $totalSubscribers > 0 ? round(($pkg->subscribers / $totalSubscribers) * 100, 1) : 0;
+            return [
+                'label' => $pkg->name . ' (' . $pkg->bandwidth_down . 'Mbps)',
+                'pct'   => $pct,
+                'color' => $colorMap[$pkg->color_theme] ?? 'bg-blue-500',
+            ];
+        })->values();
 
         return Inertia::render('Packages', [
             'packages'        => $packages,

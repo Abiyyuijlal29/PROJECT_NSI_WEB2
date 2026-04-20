@@ -17,10 +17,10 @@ class CustomerController extends Controller
                 'tier'         => $customer->tier,
                 'avatar_url'   => $customer->avatar_url,
                 'customer_id'  => 'ID: VN-' . str_pad($customer->id, 4, '0', STR_PAD_LEFT),
-                'address'      => '123 Sample St, City',
-                'contact'      => true,
-                'status'       => 'ACTIVE',
-                'last_activity'=> now()->format('M d, Y'),
+                'address'      => $customer->address ?? 'Address not updated',
+                'contact'      => true, // or some logic
+                'status'       => $customer->status,
+                'last_activity'=> $customer->last_activity ? $customer->last_activity->format('M d, Y') : 'Unknown',
             ];
         });
 

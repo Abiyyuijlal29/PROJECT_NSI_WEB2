@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Form, Head } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
 import InputError from '@/components/input-error';
@@ -6,7 +7,7 @@ import { Spinner } from '@/components/ui/spinner';
 import { register } from '@/routes';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
-import { Wifi, User, Lock, ArrowRight } from 'lucide-react';
+import { Wifi, User, Lock, ArrowRight, Eye, EyeOff } from 'lucide-react';
 
 type Props = {
     status?: string;
@@ -19,6 +20,8 @@ export default function Login({
     canResetPassword,
     canRegister,
 }: Props) {
+    const [showPassword, setShowPassword] = useState(false);
+
     return (
         <div className="min-h-screen relative flex items-center justify-center bg-[#09101f] overflow-hidden font-sans">
             <Head title="Log in" />
@@ -41,8 +44,8 @@ export default function Login({
                         <Wifi className="w-8 h-8 text-white" />
                     </div>
                     <div className="text-xl font-bold tracking-wide">
-                        <span className="text-white text-[1.3rem]">VORTEX </span>
-                        <span className="text-[#3b82f6] text-[1.3rem]">NETWORKS</span>
+                        <span className="text-white text-[1.3rem]">NSI Net Satu </span>
+                        <span className="text-[#3b82f6] text-[1.3rem]">Internews</span>
                     </div>
                     <div className="text-[#64748b] text-[0.75rem] mt-1 font-medium tracking-wide font-sans">
                         ISP Management Portal
@@ -94,18 +97,27 @@ export default function Login({
                                         </TextLink>
                                     )}
                                 </div>
-                                <div className="flex items-center w-full bg-[#151c2e] border border-[#28354f] rounded-lg px-4 py-3 focus-within:border-[#3b82f6] transition-colors">
-                                    <Lock className="w-4 h-4 text-[#5f708a] mr-3" />
+                                <div className="flex items-center w-full bg-[#151c2e] border border-[#28354f] rounded-lg px-4 py-3 focus-within:border-[#3b82f6] transition-colors relative">
+                                    <Lock className="w-4 h-4 text-[#5f708a] mr-3 shrink-0" />
                                     <input
                                         id="password"
-                                        type="password"
+                                        type={showPassword ? "text" : "password"}
                                         name="password"
                                         required
                                         tabIndex={2}
                                         autoComplete="current-password"
                                         placeholder="••••••••"
-                                        className="bg-transparent border-none outline-none text-sm text-gray-200 placeholder-[#475569] tracking-widest w-full"
+                                        className={`bg-transparent border-none outline-none text-sm text-gray-200 placeholder-[#475569] w-full pr-10 ${!showPassword ? 'tracking-widest' : ''}`}
                                     />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute right-4 text-[#5f708a] hover:text-[#8b9bb4] transition-colors focus:outline-none"
+                                        tabIndex={-1}
+                                        aria-label={showPassword ? "Hide password" : "Show password"}
+                                    >
+                                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                                    </button>
                                 </div>
                                 <InputError message={errors.password} />
                             </div>

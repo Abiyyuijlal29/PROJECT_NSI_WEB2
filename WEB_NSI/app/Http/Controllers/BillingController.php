@@ -10,27 +10,40 @@ class BillingController extends Controller
 {
     public function index(): Response
     {
-        $invoices = [
-            ['customer_name' => 'Budi Santoso',  'invoice_id' => '#INV-2024-001', 'amount' => '$45.00',  'due_date' => 'Oct 12, 2024', 'status' => 'Paid'],
-            ['customer_name' => 'Siti Aminah',   'invoice_id' => '#INV-2024-002', 'amount' => '$32.00',  'due_date' => 'Oct 14, 2024', 'status' => 'Pending'],
-            ['customer_name' => 'David Miller',  'invoice_id' => '#INV-2024-003', 'amount' => '$115.00', 'due_date' => 'Oct 10, 2024', 'status' => 'Overdue'],
-            ['customer_name' => 'Dewi Lestari',  'invoice_id' => '#INV-2024-004', 'amount' => '$45.00',  'due_date' => 'Oct 15, 2024', 'status' => 'Pending'],
-        ];
+        $dbInvoices = \App\Models\Invoice::with('customer')->latest()->take(10)->get();
+        $invoices = $dbInvoices->map(function ($inv) {
+            return [
+                'customer_name' => $inv->customer->name ?? 'Unknown',
+                'invoice_id'    => '#' . $inv->invoice_number,
+                'amount'        => 'Rp ' . number_format($inv->amount, 0, ',', '.'),
+                'due_date'      => $inv->due_date->format('M d, Y'),
+                'status'        => $inv->status,
+            ];
+        });
+
+        $totalRevenue = \App\Models\Invoice::where('status', 'Paid')->sum('amount');
+        $outstanding = \App\Models\Invoice::where('status', '!=', 'Paid')->sum('amount');
+        $uncollectedCount = \App\Models\Invoice::where('status', '!=', 'Paid')->count();
+        $totalExpenses = 18400000; // hardcoded example expense
+        $netProfit = $totalRevenue - $totalExpenses;
 
         $stats = [
-            'total_revenue'           => '$45,280.00',
-            'outstanding_receivables' => '$3,840.15',
-            'total_expenses'          => '$18,400.00',
-            'net_profit'              => '$26,880.00',
-            'uncollected_count'       => 17,
+            'total_revenue'           => 'Rp ' . number_format($totalRevenue, 0, ',', '.'),
+            'outstanding_receivables' => 'Rp ' . number_format($outstanding, 0, ',', '.'),
+            'total_expenses'          => 'Rp ' . number_format($totalExpenses, 0, ',', '.'),
+            'net_profit'              => 'Rp ' . number_format($netProfit, 0, ',', '.'),
+            'uncollected_count'       => $uncollectedCount,
         ];
 
-        $whatsapp_log = [
-            ['type' => 'sent',    'message' => 'Payment Confirmation Sent', 'to' => '+62 812-3456-7890', 'time' => '2 minutes ago'],
-            ['type' => 'created', 'message' => 'Invoice Generated',         'to' => '+62 813-1122-3344', 'time' => '45 minutes ago'],
-            ['type' => 'sent',    'message' => 'Payment Reminder Sent',     'to' => '+62 877-3368-7786', 'time' => '1 hour ago'],
-            ['type' => 'sent',    'message' => 'Payment Confirmation Sent', 'to' => '+62 811-2233-4455', 'time' => '2 hours ago'],
-        ];
+        $dbLogs = \App\Models\WhatsappLog::latest('sent_at')->take(10)->get();
+        $whatsapp_log = $dbLogs->map(function ($log) {
+            return [
+                'type'    => $log->type,
+                'message' => $log->message,
+                'to'      => $log->recipient_number,
+                'time'    => $log->sent_at ? $log->sent_at->diffForHumans() : 'Unknown',
+            ];
+        });
 
         return Inertia::render('Billing', [
             'stats'        => $stats,

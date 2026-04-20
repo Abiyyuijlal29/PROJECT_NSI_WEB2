@@ -105,7 +105,7 @@ const BillingPage = ({ stats = defaultStats, invoices = defaultInvoices, whatsap
             {/* Page Header */}
             <div className="mb-6">
                 <h1 className="text-2xl font-bold text-white tracking-tight">Billing page</h1>
-                <p className="text-sm text-slate-400 mt-0.5">Real-time billing &amp; bookkeeping overview for Vortex Networks</p>
+                <p className="text-sm text-slate-400 mt-0.5">Real-time billing &amp; bookkeeping overview for NSI Net Satu Internews</p>
             </div>
 
             {/* Stats Cards */}

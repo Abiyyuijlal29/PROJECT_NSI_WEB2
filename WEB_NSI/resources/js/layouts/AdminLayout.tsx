@@ -27,8 +27,8 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                             </svg>
                         </div>
                         <div>
-                            <h1 className="text-white font-bold leading-tight tracking-wide text-base">Vortex</h1>
-                            <span className="text-xs text-slate-400 font-medium tracking-wide">Networks Admin</span>
+                            <h1 className="text-white font-bold leading-tight tracking-wide text-xs">NSI Net Satu Internews</h1>
+                            <span className="text-xs text-slate-400 font-medium tracking-wide">Admin</span>
                         </div>
                     </div>
 
