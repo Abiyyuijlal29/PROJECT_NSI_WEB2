@@ -12,28 +12,28 @@ interface StatsProps {
 export default function DashboardStats({ stats }: StatsProps) {
     const cards = [
         {
-            title: 'Total Active Customers',
+            title: 'Total Pelanggan Aktif',
             value: stats.total_customers.toLocaleString(),
             icon: <Users className="w-5 h-5 text-blue-500" />,
             badge: '+12%',
             badgeColor: 'text-emerald-400 bg-emerald-500/10',
         },
         {
-            title: 'Monthly Revenue',
+            title: 'Pendapatan Bulanan',
             value: `$${stats.monthly_revenue.toLocaleString()}`,
             icon: <DollarSign className="w-5 h-5 text-emerald-500" />,
             badge: '+5.4%',
             badgeColor: 'text-emerald-400 bg-emerald-500/10',
         },
         {
-            title: 'Network Status',
+            title: 'Status Jaringan',
             value: stats.network_status,
             icon: <Activity className="w-5 h-5 text-blue-500" />,
             badge: 'Optimal',
             badgeColor: 'text-blue-400 bg-blue-500/10',
         },
         {
-            title: 'Open Support Tickets',
+            title: 'Tiket Dukungan Terbuka',
             value: stats.open_tickets,
             icon: <AlertCircle className="w-5 h-5 text-rose-500" />,
             badge: '-8%',

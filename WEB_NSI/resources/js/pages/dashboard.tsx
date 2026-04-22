@@ -20,7 +20,7 @@ interface DashboardProps {
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Dashboard',
+        title: 'Dasbor',
         href: dashboard(),
     },
 ];
@@ -34,7 +34,7 @@ const Dashboard = ({ stats, recent_activity, urgent_tickets }: DashboardProps) =
 
     return (
         <>
-            <Head title="Dashboard" />
+            <Head title="Dasbor" />
 
             <div className="flex flex-col gap-6 min-h-screen bg-[#0E121B] text-slate-300 font-sans selection:bg-blue-500/30">
 

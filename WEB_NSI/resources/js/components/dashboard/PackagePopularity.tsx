@@ -5,7 +5,7 @@ interface PackageProps {
 export default function PackagePopularity({ data }: PackageProps) {
     return (
         <div className="bg-[#111827]/50 backdrop-blur-sm border border-slate-800 rounded-xl p-6 h-full shadow-lg">
-            <h2 className="text-[10px] font-bold text-white tracking-[0.15em] uppercase opacity-70 mb-6 font-sans">Package Popularity</h2>
+            <h2 className="text-[10px] font-bold text-white tracking-[0.15em] uppercase opacity-70 mb-6 font-sans">Popularitas Paket</h2>
             <div className="space-y-5">
                 {data.map((pkg, i) => (
                     <div key={i} className="space-y-1.5">

@@ -12,7 +12,7 @@ interface DashboardProps {
 const Dashboard = ({ tickets }: DashboardProps) => {
     return (
         <>
-            <Head title="Support Dashboard" />
+            <Head title="Dasbor Dukungan" />
             
             <div className="flex flex-col h-full">
                 {/* Top Statistics Row */}

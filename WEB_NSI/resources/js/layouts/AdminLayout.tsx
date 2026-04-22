@@ -1,5 +1,6 @@
 import { Link, usePage } from '@inertiajs/react';
-import { dashboard, support, customers, billing, packages } from '@/routes';
+import { dashboard, customers, billing, packages } from '@/routes';
+import support from '@/routes/support';
 import { Search, LayoutDashboard, Users, Package, CreditCard, LifeBuoy, LogOut } from 'lucide-react';
 import React, { PropsWithChildren } from 'react';
 
@@ -8,7 +9,7 @@ const navItems = [
     { icon: <Users size={18} />,          label: 'Customers', href: customers().url },
     { icon: <Package size={18} />,        label: 'Package',   href: packages().url },
     { icon: <CreditCard size={18} />,     label: 'Billing',   href: billing().url },
-    { icon: <LifeBuoy size={18} />,       label: 'Ticketing', href: support.dashboard().url },
+    { icon: <LifeBuoy size={18} />,       label: 'Customer Service', href: support.dashboard().url },
 ];
 
 export default function AdminLayout({ children }: PropsWithChildren) {
@@ -26,9 +27,10 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                             </svg>
                         </div>
-                        <div>
-                            <h1 className="text-white font-bold leading-tight tracking-wide text-xs">NSI Net Satu Internews</h1>
-                            <span className="text-xs text-slate-400 font-medium tracking-wide">Admin</span>
+                        <div className="flex flex-col">
+                            <h1 className="text-white font-bold leading-none tracking-wide text-sm">NSI</h1>
+                            <span className="text-[#3b82f6] font-bold leading-none tracking-wide text-[0.65rem] mt-0.5">Net Satu Internews</span>
+                            <span className="text-[0.65rem] text-slate-400 font-medium tracking-wide mt-1">Admin</span>
                         </div>
                     </div>
 
@@ -78,7 +80,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4 group-focus-within:text-blue-500 transition-colors" />
                             <input
                                 type="text"
-                                placeholder="Search customers or Tickets"
+                                placeholder="Cari pelanggan atau Tiket"
                                 className="w-full bg-[#182130] text-slate-300 placeholder-slate-500 rounded-lg pl-10 pr-4 py-2 outline-none focus:ring-1 focus:ring-blue-500/70 border border-slate-800 focus:border-blue-500/50 transition-all text-sm font-medium"
                             />
                         </div>
@@ -88,7 +90,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                         </span>
-                        <span className="text-xs text-blue-400 font-bold tracking-wider uppercase">System Online</span>
+                        <span className="text-xs text-blue-400 font-bold tracking-wider uppercase">Sistem Online</span>
                     </div>
                 </header>
 

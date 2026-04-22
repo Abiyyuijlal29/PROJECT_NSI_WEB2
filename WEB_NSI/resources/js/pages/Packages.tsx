@@ -103,24 +103,24 @@ const PackagesPage = ({
 
     return (
         <>
-            <Head title="Service Package Overview" />
+            <Head title="Ringkasan Paket Layanan" />
 
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-white tracking-tight">Service Package Overview</h1>
+                    <h1 className="text-2xl font-bold text-white tracking-tight">Ringkasan Paket Layanan</h1>
                 </div>
                 <div className="flex items-center gap-3">
                     <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-semibold bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                        Network Stable
+                        Jaringan Stabil
                     </div>
                     <div className="flex items-center gap-1.5 text-xs text-slate-300 font-semibold bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-full">
                         <Radio className="w-3 h-3 text-blue-400" />
-                        {packages.length} Active Tiers
+                        {packages.length} Tingkat Aktif
                     </div>
                     <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold rounded-lg transition-all shadow-lg shadow-blue-600/20">
-                        + Add New Packet
+                        + Tambah Paket Baru
                     </button>
                 </div>
             </div>
@@ -141,12 +141,12 @@ const PackagesPage = ({
                             <h3 className="text-lg font-bold text-white mb-0.5">{pkg.name}</h3>
                             <p className={`text-xs font-semibold mb-4 ${colors.badge}`}>{pkg.speed}</p>
                             <div className="flex justify-between text-xs text-slate-500 mb-1">
-                                <span>Price</span>
-                                <span>Subscribers</span>
+                                <span>Harga</span>
+                                <span>Pelanggan</span>
                             </div>
                             <div className="flex justify-between mb-3">
                                 <span className="text-sm font-bold text-slate-200">{pkg.price}</span>
-                                <span className={`text-sm font-bold ${colors.badge}`}>{pkg.subscribers} Active</span>
+                                <span className={`text-sm font-bold ${colors.badge}`}>{pkg.subscribers} Aktif</span>
                             </div>
                             <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
                                 <div
@@ -164,17 +164,17 @@ const PackagesPage = ({
                 {/* Package Configuration Table */}
                 <div className="lg:col-span-2 bg-[#111827]/70 border border-slate-800 rounded-xl overflow-hidden">
                     <div className="px-5 py-4 border-b border-slate-800/60 flex items-center justify-between">
-                        <h2 className="text-base font-bold text-white">Package Configuration</h2>
-                        <button className="text-xs text-blue-400 hover:text-blue-300 font-semibold transition-colors">View All Packages</button>
+                        <h2 className="text-base font-bold text-white">Konfigurasi Paket</h2>
+                        <button className="text-xs text-blue-400 hover:text-blue-300 font-semibold transition-colors">Lihat Semua Paket</button>
                     </div>
                     <table className="w-full">
                         <thead>
                             <tr className="text-[10px] font-bold text-slate-500 uppercase tracking-widest border-b border-slate-800/40 bg-[#0D1424]/40">
-                                <th className="px-5 py-3 text-left">Package Name</th>
+                                <th className="px-5 py-3 text-left">Nama Paket</th>
                                 <th className="px-5 py-3 text-left">Bandwidth (U/D)</th>
-                                <th className="px-5 py-3 text-left">Monthly Price</th>
+                                <th className="px-5 py-3 text-left">Harga Bulanan</th>
                                 <th className="px-5 py-3 text-left">Status</th>
-                                <th className="px-5 py-3 text-left">Actions</th>
+                                <th className="px-5 py-3 text-left">Aksi</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-800/30">
@@ -213,7 +213,7 @@ const PackagesPage = ({
 
                 {/* Bandwidth Usage Insights */}
                 <div className="bg-[#111827]/70 border border-slate-800 rounded-xl p-5">
-                    <h2 className="text-base font-bold text-white mb-5">Bandwidth Usage Insights</h2>
+                    <h2 className="text-base font-bold text-white mb-5">Wawasan Penggunaan Bandwidth</h2>
                     <DonutChart pct={Math.round(topPct)} />
                     <div className="mt-6 flex flex-col gap-3">
                         {bandwidth_usage.map((item, i) => (
@@ -230,7 +230,7 @@ const PackagesPage = ({
                     </div>
                     <button className="mt-5 w-full flex items-center justify-center gap-2 py-2.5 bg-slate-800/60 hover:bg-slate-700/60 border border-slate-700/50 text-slate-300 hover:text-white text-sm font-medium rounded-lg transition-all">
                         <Download className="w-4 h-4" />
-                        Download Usage Report
+                        Unduh Laporan Penggunaan
                     </button>
                 </div>
             </div>

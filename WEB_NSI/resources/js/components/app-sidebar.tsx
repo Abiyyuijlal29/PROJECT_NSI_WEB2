@@ -13,7 +13,8 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard, support, customers, billing, packages } from '@/routes';
+import { dashboard, customers, billing, packages } from '@/routes';
+import support from '@/routes/support';
 import type { NavItem } from '@/types';
 
 import { Users, Box, CreditCard, ShieldAlert } from 'lucide-react';
@@ -40,7 +41,7 @@ const mainNavItems: NavItem[] = [
         icon: CreditCard,
     },
     {
-        title: 'Ticketing',
+        title: 'Customer Service',
         href: support.dashboard().url,
         icon: ShieldAlert,
     },

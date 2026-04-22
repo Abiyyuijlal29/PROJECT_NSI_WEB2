@@ -51,13 +51,13 @@ const CustomersPage = ({ customers: serverCustomers }: Props) => {
 
     return (
         <>
-            <Head title="Customer Directory" />
+            <Head title="Direktori Pelanggan" />
 
             {/* Page Header */}
             <div className="flex items-center justify-between mb-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-white tracking-tight">Customer Directory</h1>
-                    <p className="text-sm text-slate-400 mt-0.5">Managing {list.length.toLocaleString()} active connections across the network</p>
+                    <h1 className="text-2xl font-bold text-white tracking-tight">Direktori Pelanggan</h1>
+                    <p className="text-sm text-slate-400 mt-0.5">Mengelola {list.length.toLocaleString()} koneksi aktif di seluruh jaringan</p>
                 </div>
                 <div className="flex items-center gap-3">
                     <button className="p-2 rounded-lg bg-slate-800/60 border border-slate-700/50 text-slate-400 hover:text-white transition-colors">
@@ -68,7 +68,7 @@ const CustomersPage = ({ customers: serverCustomers }: Props) => {
                     </button>
                     <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold rounded-lg transition-all shadow-lg shadow-blue-600/20">
                         <UserPlus className="w-4 h-4" />
-                        Add New Customer
+                        Tambah Pelanggan Baru
                     </button>
                 </div>
             </div>
@@ -77,8 +77,8 @@ const CustomersPage = ({ customers: serverCustomers }: Props) => {
             <div className="bg-[#111827]/70 border border-slate-800 rounded-xl p-4 mb-4">
                 <div className="flex items-center gap-2 mb-4 text-blue-400">
                     <SlidersHorizontal className="w-4 h-4" />
-                    <span className="text-sm font-semibold">Advanced Filters</span>
-                    <button className="ml-auto text-xs text-slate-400 hover:text-white transition-colors">Reset All</button>
+                    <span className="text-sm font-semibold">Filter Lanjutan</span>
+                    <button className="ml-auto text-xs text-slate-400 hover:text-white transition-colors">Setel Ulang Semua</button>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
                     <div>
@@ -88,34 +88,34 @@ const CustomersPage = ({ customers: serverCustomers }: Props) => {
                             onChange={e => setStatusFilter(e.target.value)}
                             className="w-full bg-[#0D1424] border border-slate-700/60 text-slate-300 text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none"
                         >
-                            <option>All Statuses</option>
+                            <option>Semua Status</option>
                             <option>ACTIVE</option>
                             <option>SUSPENDED</option>
                             <option>INACTIVE</option>
                         </select>
                     </div>
                     <div>
-                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-1.5">Service Package</label>
+                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-1.5">Paket Layanan</label>
                         <select className="w-full bg-[#0D1424] border border-slate-700/60 text-slate-300 text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none">
-                            <option>All Packages</option>
+                            <option>Semua Paket</option>
                         </select>
                     </div>
                     <div>
-                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-1.5">Last Activity</label>
-                        <input type="text" placeholder="Select range..." className="w-full bg-[#0D1424] border border-slate-700/60 text-slate-300 text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-slate-600" />
+                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-1.5">Aktivitas Terakhir</label>
+                        <input type="text" placeholder="Pilih rentang..." className="w-full bg-[#0D1424] border border-slate-700/60 text-slate-300 text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-slate-600" />
                     </div>
                     <div>
-                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-1.5">Customer ID / Email</label>
+                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-1.5">ID Pelanggan / Email</label>
                         <div className="flex gap-2">
                             <input
                                 type="text"
-                                placeholder="Specific ID..."
+                                placeholder="ID Spesifik..."
                                 value={search}
                                 onChange={e => setSearch(e.target.value)}
                                 className="flex-1 bg-[#0D1424] border border-slate-700/60 text-slate-300 text-sm rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder-slate-600"
                             />
                             <button className="flex items-center gap-1.5 px-3 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all whitespace-nowrap">
-                                Apply Filters
+                                Terapkan Filter
                             </button>
                         </div>
                     </div>
@@ -127,13 +127,13 @@ const CustomersPage = ({ customers: serverCustomers }: Props) => {
                 <table className="w-full text-left">
                     <thead>
                         <tr className="text-[10px] font-bold text-slate-500 uppercase tracking-widest border-b border-slate-800/60 bg-[#0D1424]/50">
-                            <th className="px-6 py-4">Customer</th>
-                            <th className="px-6 py-4">Address</th>
-                            <th className="px-6 py-4">Contact</th>
-                            <th className="px-6 py-4">Service Package</th>
+                            <th className="px-6 py-4">Pelanggan</th>
+                            <th className="px-6 py-4">Alamat</th>
+                            <th className="px-6 py-4">Kontak</th>
+                            <th className="px-6 py-4">Paket Layanan</th>
                             <th className="px-6 py-4">Status</th>
-                            <th className="px-6 py-4">Last Activity</th>
-                            <th className="px-6 py-4 text-right">Actions</th>
+                            <th className="px-6 py-4">Aktivitas Terakhir</th>
+                            <th className="px-6 py-4 text-right">Aksi</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800/40">
@@ -196,7 +196,7 @@ const CustomersPage = ({ customers: serverCustomers }: Props) => {
                 {/* Pagination */}
                 <div className="px-6 py-4 border-t border-slate-800/60 flex items-center justify-between">
                     <span className="text-xs text-slate-500 font-medium uppercase tracking-wider">
-                        Showing 1-{filtered.length} of {list.length.toLocaleString()} Customers
+                        Menampilkan 1-{filtered.length} dari {list.length.toLocaleString()} Pelanggan
                     </span>
                     <div className="flex items-center gap-1">
                         <button className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-all">

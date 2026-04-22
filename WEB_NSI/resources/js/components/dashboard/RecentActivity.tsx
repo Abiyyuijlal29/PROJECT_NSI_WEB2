@@ -8,18 +8,18 @@ export default function RecentActivity({ data }: ActivityProps) {
     return (
         <div className="bg-[#111827]/50 backdrop-blur-sm border border-slate-800 rounded-xl flex flex-col h-full shadow-lg">
             <div className="p-6 border-b border-slate-800/50 flex justify-between items-center">
-                <h2 className="text-sm font-bold text-white tracking-widest uppercase opacity-80">Customer Management (Recent Activity)</h2>
-                <button className="text-[10px] font-bold text-blue-400 hover:text-blue-300 transition-colors uppercase tracking-wider">View CRM</button>
+                <h2 className="text-sm font-bold text-white tracking-widest uppercase opacity-80">Manajemen Pelanggan (Aktivitas Terbaru)</h2>
+                <button className="text-[10px] font-bold text-blue-400 hover:text-blue-300 transition-colors uppercase tracking-wider">Lihat CRM</button>
             </div>
             <div className="flex-1 overflow-x-auto">
                 <table className="w-full text-left">
                     <thead>
                         <tr className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.15em] border-b border-slate-800/30">
-                            <th className="px-6 py-4">Client</th>
-                            <th className="px-6 py-4">Package</th>
+                            <th className="px-6 py-4">Klien</th>
+                            <th className="px-6 py-4">Paket</th>
                             <th className="px-6 py-4">Status</th>
-                            <th className="px-6 py-4">Usage</th>
-                            <th className="px-6 py-4 text-center">Action</th>
+                            <th className="px-6 py-4">Penggunaan</th>
+                            <th className="px-6 py-4 text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800/30">

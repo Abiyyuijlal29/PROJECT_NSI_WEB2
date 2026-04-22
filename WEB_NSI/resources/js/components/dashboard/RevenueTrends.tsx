@@ -5,14 +5,14 @@ const data = [
     { name: 'FEB', value: 300 },
     { name: 'MAR', value: 600 },
     { name: 'APR', value: 500 },
-    { name: 'MAY', value: 450 },
+    { name: 'MEI', value: 450 },
     { name: 'JUN', value: 800 },
 ];
 
 export default function RevenueTrends() {
     return (
         <div className="bg-[#111827]/50 backdrop-blur-sm border border-slate-800 rounded-xl p-6 flex flex-col h-full shadow-lg">
-            <h2 className="text-sm font-bold text-white tracking-widest uppercase opacity-80 mb-6">Revenue Trends</h2>
+            <h2 className="text-sm font-bold text-white tracking-widest uppercase opacity-80 mb-6">Tren Pendapatan</h2>
             <div className="flex-1 min-h-[200px]">
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={data}>

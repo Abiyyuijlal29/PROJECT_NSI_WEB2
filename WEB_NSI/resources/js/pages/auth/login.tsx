@@ -43,12 +43,12 @@ export default function Login({
                     <div className="w-14 h-14 bg-[#2363eb] rounded-xl flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(37,99,235,0.4)]">
                         <Wifi className="w-8 h-8 text-white" />
                     </div>
-                    <div className="text-xl font-bold tracking-wide">
-                        <span className="text-white text-[1.3rem]">NSI Net Satu </span>
-                        <span className="text-[#3b82f6] text-[1.3rem]">Internews</span>
+                    <div className="flex flex-col items-center">
+                        <span className="text-white text-[1.3rem] font-bold tracking-wide">NSI</span>
+                        <span className="text-[#3b82f6] text-[1.3rem] font-bold tracking-wide">Net Satu Internews</span>
                     </div>
                     <div className="text-[#64748b] text-[0.75rem] mt-1 font-medium tracking-wide font-sans">
-                        ISP Management Portal
+                        Portal Manajemen ISP
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@ export default function Login({
                             {/* Administrator ID */}
                             <div className="grid gap-2">
                                 <label htmlFor="email" className="text-xs font-semibold text-[#8b9bb4]">
-                                    Administrator ID
+                                    ID Administrator
                                 </label>
                                 <div className="flex items-center w-full bg-[#151c2e] border border-[#28354f] rounded-lg px-4 py-3 focus-within:border-[#3b82f6] transition-colors">
                                     <User className="w-4 h-4 text-[#5f708a] mr-3" />
@@ -74,7 +74,7 @@ export default function Login({
                                         autoFocus
                                         tabIndex={1}
                                         autoComplete="email"
-                                        placeholder="Enter your ID"
+                                        placeholder="Masukkan ID Anda"
                                         className="bg-transparent border-none outline-none text-sm text-gray-200 placeholder-[#475569] w-full"
                                     />
                                 </div>
@@ -85,7 +85,7 @@ export default function Login({
                             <div className="grid gap-2">
                                 <div className="flex items-center justify-between">
                                     <label htmlFor="password" className="text-xs font-semibold text-[#8b9bb4]">
-                                        Password
+                                        Kata Sandi
                                     </label>
                                     {canResetPassword && (
                                         <TextLink
@@ -93,7 +93,7 @@ export default function Login({
                                             className="text-xs text-[#3b82f6] hover:text-[#60a5fa] transition-colors focus:ring-0"
                                             tabIndex={5}
                                         >
-                                            Forgot Access?
+                                            Lupa Akses?
                                         </TextLink>
                                     )}
                                 </div>
@@ -137,7 +137,7 @@ export default function Login({
                                 data-test="login-button"
                             >
                                 {processing ? <Spinner className="w-4 h-4" /> : null}
-                                <span>Authenticate Session</span>
+                                <span>Otentikasi Sesi</span>
                                 {!processing && <ArrowRight className="w-4 h-4" />}
                             </button>
                         </>
@@ -146,7 +146,7 @@ export default function Login({
 
                 <div className="mt-10 border-t border-[#1e293b] pt-6 text-center">
                     <p className="text-[9px] tracking-[0.2em] font-mono text-[#475569] uppercase">
-                        Secure Operator Environment V4.2.0
+                        Lingkungan Operator Aman V4.2.0
                     </p>
                 </div>
             </div>

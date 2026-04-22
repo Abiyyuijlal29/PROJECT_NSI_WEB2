@@ -100,12 +100,12 @@ const logColors: Record<string, string> = {
 const BillingPage = ({ stats = defaultStats, invoices = defaultInvoices, whatsapp_log = defaultLog }: Props) => {
     return (
         <>
-            <Head title="Billing" />
+            <Head title="Penagihan" />
 
             {/* Page Header */}
             <div className="mb-6">
-                <h1 className="text-2xl font-bold text-white tracking-tight">Billing page</h1>
-                <p className="text-sm text-slate-400 mt-0.5">Real-time billing &amp; bookkeeping overview for NSI Net Satu Internews</p>
+                <h1 className="text-2xl font-bold text-white tracking-tight">Halaman Penagihan</h1>
+                <p className="text-sm text-slate-400 mt-0.5">Ikhtisar penagihan & pembukuan real-time untuk NSI Net Satu Internews</p>
             </div>
 
             {/* Stats Cards */}
@@ -116,17 +116,17 @@ const BillingPage = ({ stats = defaultStats, invoices = defaultInvoices, whatsap
                     <div className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-3">
                         <BarChart3 className="w-4 h-4 text-blue-400" />
                     </div>
-                    <div className="text-xs text-slate-500 font-medium mb-1">Total Revenue (MTD)</div>
+                    <div className="text-xs text-slate-500 font-medium mb-1">Total Pendapatan (MTD)</div>
                     <div className="text-xl font-bold text-white">{stats.total_revenue}</div>
                 </div>
 
                 {/* Outstanding Receivables */}
                 <div className="bg-[#111827]/70 border border-slate-800 rounded-xl p-5 relative overflow-hidden">
-                    <div className="absolute top-3 right-3 text-xs font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full">{stats.uncollected_count} Uncollected</div>
+                    <div className="absolute top-3 right-3 text-xs font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full">{stats.uncollected_count} Belum Tertagih</div>
                     <div className="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-3">
                         <AlertCircle className="w-4 h-4 text-amber-400" />
                     </div>
-                    <div className="text-xs text-slate-500 font-medium mb-1">Outstanding Receivables</div>
+                    <div className="text-xs text-slate-500 font-medium mb-1">Piutang Belum Lunas</div>
                     <div className="text-xl font-bold text-white">{stats.outstanding_receivables}</div>
                 </div>
 
@@ -136,7 +136,7 @@ const BillingPage = ({ stats = defaultStats, invoices = defaultInvoices, whatsap
                     <div className="w-9 h-9 rounded-lg bg-slate-500/10 border border-slate-500/20 flex items-center justify-center mb-3">
                         <TrendingDown className="w-4 h-4 text-slate-400" />
                     </div>
-                    <div className="text-xs text-slate-500 font-medium mb-1">Total Expenses</div>
+                    <div className="text-xs text-slate-500 font-medium mb-1">Total Pengeluaran</div>
                     <div className="text-xl font-bold text-white">{stats.total_expenses}</div>
                 </div>
 
@@ -146,7 +146,7 @@ const BillingPage = ({ stats = defaultStats, invoices = defaultInvoices, whatsap
                     <div className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-3">
                         <TrendingUp className="w-4 h-4 text-emerald-400" />
                     </div>
-                    <div className="text-xs text-slate-500 font-medium mb-1">Net Profit</div>
+                    <div className="text-xs text-slate-500 font-medium mb-1">Laba Bersih</div>
                     <div className="text-xl font-bold text-white">{stats.net_profit}</div>
                 </div>
             </div>
@@ -159,11 +159,11 @@ const BillingPage = ({ stats = defaultStats, invoices = defaultInvoices, whatsap
                     <div className="bg-[#111827]/70 border border-slate-800 rounded-xl p-5">
                         <div className="flex items-center justify-between mb-1">
                             <div>
-                                <h2 className="text-base font-bold text-white">Profit &amp; Loss Report</h2>
-                                <p className="text-xs text-slate-500 mt-0.5">Monthly Income vs. Operational expenses</p>
+                                <h2 className="text-base font-bold text-white">Laporan Laba &amp; Rugi</h2>
+                                <p className="text-xs text-slate-500 mt-0.5">Pendapatan Bulanan vs. Pengeluaran Operasional</p>
                             </div>
                             <button className="text-xs text-slate-300 bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-lg font-semibold hover:bg-slate-700 transition-colors">
-                                Last 6 Months
+                                6 Bulan Terakhir
                             </button>
                         </div>
                         <ProfitChart />
@@ -172,16 +172,16 @@ const BillingPage = ({ stats = defaultStats, invoices = defaultInvoices, whatsap
                     {/* Recent Invoices */}
                     <div className="bg-[#111827]/70 border border-slate-800 rounded-xl overflow-hidden">
                         <div className="px-5 py-4 border-b border-slate-800/60 flex items-center justify-between">
-                            <h2 className="text-base font-bold text-white">Recent Automated Invoices</h2>
-                            <button className="text-xs text-blue-400 hover:text-blue-300 font-semibold transition-colors">View All</button>
+                            <h2 className="text-base font-bold text-white">Faktur Otomatis Terbaru</h2>
+                            <button className="text-xs text-blue-400 hover:text-blue-300 font-semibold transition-colors">Lihat Semua</button>
                         </div>
                         <table className="w-full">
                             <thead>
                                 <tr className="text-[10px] font-bold text-slate-500 uppercase tracking-widest border-b border-slate-800/40 bg-[#0D1424]/40">
-                                    <th className="px-5 py-3 text-left">Customer Name</th>
-                                    <th className="px-5 py-3 text-left">Invoice ID</th>
-                                    <th className="px-5 py-3 text-left">Amount</th>
-                                    <th className="px-5 py-3 text-left">Due Date</th>
+                                    <th className="px-5 py-3 text-left">Nama Pelanggan</th>
+                                    <th className="px-5 py-3 text-left">ID Faktur</th>
+                                    <th className="px-5 py-3 text-left">Jumlah</th>
+                                    <th className="px-5 py-3 text-left">Jatuh Tempo</th>
                                     <th className="px-5 py-3 text-left">Status</th>
                                 </tr>
                             </thead>
@@ -208,7 +208,7 @@ const BillingPage = ({ stats = defaultStats, invoices = defaultInvoices, whatsap
                 <div className="flex flex-col gap-5">
                     {/* Payment Gateways */}
                     <div className="bg-[#111827]/70 border border-slate-800 rounded-xl p-5">
-                        <h2 className="text-base font-bold text-white mb-4">Payment Gateways</h2>
+                        <h2 className="text-base font-bold text-white mb-4">Gerbang Pembayaran</h2>
                         <div className="flex flex-col gap-3">
                             <GatewayItem name="QRIS / Midtrans" status="Active" icon="🟦" color="emerald" />
                             <GatewayItem name="VA Bank Transfer" status="Active" icon="🏦" color="emerald" />
@@ -228,7 +228,7 @@ const BillingPage = ({ stats = defaultStats, invoices = defaultInvoices, whatsap
                                     <div className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${logColors[log.type] ?? 'bg-slate-500'}`}></div>
                                     <div>
                                         <div className="text-sm font-semibold text-slate-200">{log.message}</div>
-                                        <div className="text-xs text-slate-500 mt-0.5">Sent to: {log.to}</div>
+                                        <div className="text-xs text-slate-500 mt-0.5">Dikirim ke: {log.to}</div>
                                         <div className="text-xs text-slate-600 mt-0.5">{log.time}</div>
                                     </div>
                                 </div>

@@ -4,25 +4,25 @@ export default function StatCards() {
     return (
         <div className="grid grid-cols-4 gap-6 mb-8">
             <Card
-                title="Total Active Tickets"
+                title="Total Tiket Aktif"
                 value="1,284"
                 icon={<Ticket className="w-5 h-5 text-blue-500" />}
                 badge={{ text: '+12%', color: 'bg-emerald-500/10 text-emerald-400' }}
             />
             <Card
-                title="Avg Response Time"
+                title="Rata-rata Waktu Respons"
                 value="14m 20s"
                 icon={<Clock className="w-5 h-5 text-blue-500" />}
                 badge={{ text: '-2.4m', color: 'bg-emerald-500/10 text-emerald-400' }}
             />
             <Card
-                title="Resolved Today"
+                title="Diselesaikan Hari Ini"
                 value="156"
                 icon={<CheckCircle className="w-5 h-5 text-blue-500" />}
-                badge={{ text: 'Daily', color: 'bg-slate-700/50 text-slate-300' }}
+                badge={{ text: 'Harian', color: 'bg-slate-700/50 text-slate-300' }}
             />
             <Card
-                title="SLA Compliance"
+                title="Kepatuhan SLA"
                 value="99.2%"
                 icon={<ShieldCheck className="w-5 h-5 text-blue-500" />}
                 badge={{ text: 'Target 98%', color: 'bg-blue-500/10 text-blue-400' }}
