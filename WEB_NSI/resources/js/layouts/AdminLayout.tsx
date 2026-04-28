@@ -1,13 +1,15 @@
 import { Link, usePage } from '@inertiajs/react';
-import { Search, LayoutDashboard, Users, Package, CreditCard, LifeBuoy } from 'lucide-react';
+import { dashboard, customers, billing, packages } from '@/routes';
+import support from '@/routes/support';
+import { Search, LayoutDashboard, Users, Package, CreditCard, LifeBuoy, LogOut } from 'lucide-react';
 import React, { PropsWithChildren } from 'react';
 
 const navItems = [
-    { icon: <LayoutDashboard size={18} />, label: 'Dashboard', href: '/dashboard' },
-    { icon: <Users size={18} />, label: 'Customers', href: '#' },
-    { icon: <Package size={18} />, label: 'Package', href: '#' },
-    { icon: <CreditCard size={18} />, label: 'Billing', href: '#' },
-    { icon: <LifeBuoy size={18} />, label: 'Support', href: '/support' },
+    { icon: <LayoutDashboard size={18} />, label: 'Dashboard', href: dashboard().url },
+    { icon: <Users size={18} />,          label: 'Customers', href: customers().url },
+    { icon: <Package size={18} />,        label: 'Package',   href: packages().url },
+    { icon: <CreditCard size={18} />,     label: 'Billing',   href: billing().url },
+    { icon: <LifeBuoy size={18} />,       label: 'Customer Service', href: support.dashboard().url },
 ];
 
 export default function AdminLayout({ children }: PropsWithChildren) {
@@ -25,9 +27,10 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                             </svg>
                         </div>
-                        <div>
-                            <h1 className="text-white font-bold leading-tight tracking-wide text-base">Vortex</h1>
-                            <span className="text-xs text-slate-400 font-medium tracking-wide">Networks Admin</span>
+                        <div className="flex flex-col">
+                            <h1 className="text-white font-bold leading-none tracking-wide text-sm">NSI</h1>
+                            <span className="text-[#3b82f6] font-bold leading-none tracking-wide text-[0.65rem] mt-0.5">Net Satu Internews</span>
+                            <span className="text-[0.65rem] text-slate-400 font-medium tracking-wide mt-1">Admin</span>
                         </div>
                     </div>
 
@@ -45,15 +48,26 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                     </nav>
                 </div>
 
-                {/* User Profile */}
-                <div className="p-4 mx-3 mb-4 bg-[#1B2332] rounded-xl flex items-center space-x-3 border border-slate-700/50 cursor-pointer hover:border-slate-600 transition-colors">
-                    <div className="w-9 h-9 rounded-full shrink-0 overflow-hidden ring-2 ring-blue-500/30">
-                        <div className="w-full h-full bg-gradient-to-tr from-cyan-500 to-blue-500" />
+                {/* User Profile & Logout */}
+                <div className="p-4 mx-3 mb-4 bg-[#1B2332] rounded-xl flex items-center justify-between border border-slate-700/50 transition-colors group">
+                    <div className="flex items-center space-x-3">
+                        <div className="w-9 h-9 rounded-full shrink-0 overflow-hidden ring-2 ring-blue-500/30">
+                            <div className="w-full h-full bg-gradient-to-tr from-cyan-500 to-blue-500" />
+                        </div>
+                        <div>
+                            <div className="text-sm font-semibold text-white">Julian V.</div>
+                            <div className="text-xs text-blue-400 font-medium tracking-wide">Head Admin</div>
+                        </div>
                     </div>
-                    <div>
-                        <div className="text-sm font-semibold text-white">Julian V.</div>
-                        <div className="text-xs text-blue-400 font-medium">Head Admin</div>
-                    </div>
+                    <Link
+                        href="/logout"
+                        method="post"
+                        as="button"
+                        className="p-2 text-slate-500 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-all"
+                        title="Logout"
+                    >
+                        <LogOut size={16} />
+                    </Link>
                 </div>
             </aside>
 
@@ -66,7 +80,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4 group-focus-within:text-blue-500 transition-colors" />
                             <input
                                 type="text"
-                                placeholder="Search customers or Tickets"
+                                placeholder="Cari pelanggan atau Tiket"
                                 className="w-full bg-[#182130] text-slate-300 placeholder-slate-500 rounded-lg pl-10 pr-4 py-2 outline-none focus:ring-1 focus:ring-blue-500/70 border border-slate-800 focus:border-blue-500/50 transition-all text-sm font-medium"
                             />
                         </div>
@@ -76,7 +90,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                         </span>
-                        <span className="text-xs text-blue-400 font-bold tracking-wider uppercase">System Online</span>
+                        <span className="text-xs text-blue-400 font-bold tracking-wider uppercase">Sistem Online</span>
                     </div>
                 </header>
 
@@ -93,6 +107,7 @@ function NavItem({ icon, label, href, active = false }: { icon: React.ReactNode;
     return (
         <Link
             href={href}
+            prefetch
             className={`flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all font-medium text-sm
                 ${active
                     ? 'bg-blue-600/10 text-blue-400 border border-blue-500/10'

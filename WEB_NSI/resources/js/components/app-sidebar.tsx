@@ -13,14 +13,37 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard } from '@/routes';
+import { dashboard, customers, billing, packages } from '@/routes';
+import support from '@/routes/support';
 import type { NavItem } from '@/types';
+
+import { Users, Box, CreditCard, ShieldAlert } from 'lucide-react';
 
 const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
-        href: dashboard(),
+        href: dashboard().url,
         icon: LayoutGrid,
+    },
+    {
+        title: 'Customers',
+        href: customers().url,
+        icon: Users,
+    },
+    {
+        title: 'Package',
+        href: packages().url,
+        icon: Box,
+    },
+    {
+        title: 'Billing',
+        href: billing().url,
+        icon: CreditCard,
+    },
+    {
+        title: 'Customer Service',
+        href: support.dashboard().url,
+        icon: ShieldAlert,
     },
 ];
 
@@ -44,7 +67,7 @@ export function AppSidebar() {
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
-                            <Link href={dashboard()} prefetch>
+                            <Link href={dashboard().url} prefetch>
                                 <AppLogo />
                             </Link>
                         </SidebarMenuButton>

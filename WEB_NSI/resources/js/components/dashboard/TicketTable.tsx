@@ -25,21 +25,21 @@ export default function TicketTable({ tickets }: TicketTableProps) {
                 <div className="flex items-center space-x-6">
                     <div className="flex items-center space-x-2 text-slate-300">
                         <Filter className="w-4 h-4" />
-                        <span className="text-sm font-semibold">Filters:</span>
+                        <span className="text-sm font-semibold">Filter:</span>
                     </div>
-                    <FilterDropdown label="Priority: All" />
-                    <FilterDropdown label="Status: All" />
-                    <FilterDropdown label="Last 24 Hours" />
+                    <FilterDropdown label="Prioritas: Semua" />
+                    <FilterDropdown label="Status: Semua" />
+                    <FilterDropdown label="24 Jam Terakhir" />
                 </div>
                 <button className="text-blue-500 text-sm font-medium hover:text-blue-400 focus:outline-none">
-                    Clear all filters
+                    Hapus semua filter
                 </button>
             </div>
 
             {/* Main Table Card */}
             <div className="bg-[#141B2D] border border-slate-800 rounded-xl flex-1 flex flex-col">
                 <div className="p-6 border-b border-slate-800 flex justify-between items-center">
-                    <h2 className="text-xl font-bold text-white tracking-wide">Active Support Tickets</h2>
+                    <h2 className="text-xl font-bold text-white tracking-wide">Tiket Dukungan Aktif</h2>
                     <div className="flex space-x-2">
                         <button className="p-2 bg-slate-800/50 hover:bg-slate-700/50 text-slate-300 rounded-lg border border-slate-700/50 transition-colors">
                             <Download className="w-4 h-4" />
@@ -54,12 +54,12 @@ export default function TicketTable({ tickets }: TicketTableProps) {
                     <table className="w-full text-left border-collapse min-w-[800px]">
                         <thead>
                             <tr className="border-b border-slate-800 text-xs text-slate-400 font-bold tracking-wider uppercase">
-                                <th className="px-6 py-4">TICKET ID</th>
-                                <th className="px-6 py-4">CUSTOMER</th>
-                                <th className="px-6 py-4">CATEGORY</th>
-                                <th className="px-6 py-4">PRIORITY</th>
+                                <th className="px-6 py-4">ID TIKET</th>
+                                <th className="px-6 py-4">PELANGGAN</th>
+                                <th className="px-6 py-4">KATEGORI</th>
+                                <th className="px-6 py-4">PRIORITAS</th>
                                 <th className="px-6 py-4">STATUS</th>
-                                <th className="px-6 py-4">TECHNICIAN</th>
+                                <th className="px-6 py-4">TEKNISI</th>
                                 <th className="px-6 py-4"></th>
                             </tr>
                         </thead>
@@ -79,13 +79,15 @@ export default function TicketTable({ tickets }: TicketTableProps) {
                                     <td className="px-6 py-4 text-sm text-slate-300 font-medium">{ticket.category}</td>
                                     <td className="px-6 py-4">
                                         <span className={`px-2.5 py-1 text-xs font-bold rounded-full uppercase tracking-wide ${priorityStyles[ticket.priority]}`}>
-                                            {ticket.priority}
+                                            {ticket.priority === 'High' ? 'Tinggi' : ticket.priority === 'Medium' ? 'Sedang' : ticket.priority === 'Low' ? 'Rendah' : ticket.priority}
                                         </span>
                                     </td>
                                     <td className="px-6 py-4">
                                         <div className="flex items-center space-x-2">
                                             <span className={`w-1.5 h-1.5 rounded-full ${statusDots[ticket.status]}`}></span>
-                                            <span className="text-sm text-slate-300 font-medium">{ticket.status}</span>
+                                            <span className="text-sm text-slate-300 font-medium">
+                                                {ticket.status === 'Open' ? 'Terbuka' : ticket.status === 'In Progress' ? 'Dalam Proses' : ticket.status === 'Resolved' ? 'Selesai' : ticket.status}
+                                            </span>
                                         </div>
                                     </td>
                                     <td className="px-6 py-4 text-sm text-slate-300 font-medium">{ticket.technician}</td>
@@ -100,13 +102,13 @@ export default function TicketTable({ tickets }: TicketTableProps) {
 
                 {/* Pagination */}
                 <div className="p-4 border-t border-slate-800 flex items-center justify-between text-sm">
-                    <span className="text-slate-500 font-medium">Showing 1-10 of 1,284 tickets</span>
+                    <span className="text-slate-500 font-medium">Menampilkan 1-10 dari 1,284 tiket</span>
                     <div className="flex space-x-1">
-                        <button className="px-3 py-1.5 text-slate-400 hover:text-white font-medium">Previous</button>
+                        <button className="px-3 py-1.5 text-slate-400 hover:text-white font-medium">Sebelumnya</button>
                         <button className="w-8 h-8 rounded bg-blue-600 text-white font-bold flex items-center justify-center">1</button>
                         <button className="w-8 h-8 rounded bg-slate-800/50 hover:bg-slate-700/50 text-slate-300 font-medium flex items-center justify-center transition-colors">2</button>
                         <button className="w-8 h-8 rounded bg-slate-800/50 hover:bg-slate-700/50 text-slate-300 font-medium flex items-center justify-center transition-colors">3</button>
-                        <button className="px-3 py-1.5 text-slate-300 hover:text-white font-medium">Next</button>
+                        <button className="px-3 py-1.5 text-slate-300 hover:text-white font-medium">Berikutnya</button>
                     </div>
                 </div>
             </div>
