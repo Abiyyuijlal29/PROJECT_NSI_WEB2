@@ -24,18 +24,18 @@ interface Props {
 }
 
 const statusStyles: Record<string, string> = {
-    ACTIVE:    'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20',
+    ACTIVE: 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20',
     SUSPENDED: 'text-red-400 bg-red-500/10 border border-red-500/20',
-    INACTIVE:  'text-slate-400 bg-slate-500/10 border border-slate-500/20',
+    INACTIVE: 'text-slate-400 bg-slate-500/10 border border-slate-500/20',
 };
 
 const mockCustomers: Customer[] = [
-    { id: 1, name: 'Alex Rivera',    tier: 'Fiber Gig 1000',  avatar_url: 'https://i.pravatar.cc/40?u=alex',    customer_id: 'ID: VN-8042', address: '123 Sapphire St, New York',    contact: true, status: 'ACTIVE',    last_activity: 'Oct 24, 2023' },
-    { id: 2, name: 'Elena Vance',    tier: 'Home Basic 100',  avatar_url: 'https://i.pravatar.cc/40?u=elena',   customer_id: 'ID: VN-4902', address: '456 Azure Blvd, California',  contact: true, status: 'SUSPENDED', last_activity: 'Oct 24, 2023' },
-    { id: 3, name: 'Marcus Thorne',  tier: 'Fiber Gig 1000',  avatar_url: 'https://i.pravatar.cc/40?u=marcus',  customer_id: 'ID: VN-1856', address: '789 Cobalt Ave, Texas',       contact: true, status: 'INACTIVE',  last_activity: 'Oct 23, 2023' },
-    { id: 4, name: 'Sarah Jenkins',  tier: 'Home Plus 500',   avatar_url: 'https://i.pravatar.cc/40?u=sarah',   customer_id: 'ID: VN-3920', address: '321 Navy Way, Florida',       contact: true, status: 'ACTIVE',    last_activity: 'Oct 22, 2023' },
-    { id: 5, name: 'James Okafor',   tier: 'Business Pro',    avatar_url: 'https://i.pravatar.cc/40?u=james',   customer_id: 'ID: VN-5512', address: '88 Pacific Rd, Washington',  contact: true, status: 'ACTIVE',    last_activity: 'Oct 21, 2023' },
-    { id: 6, name: 'Anita Desai',    tier: 'Standard 100',    avatar_url: 'https://i.pravatar.cc/40?u=anita',   customer_id: 'ID: VN-7703', address: '45 Ember Lane, Nevada',       contact: true, status: 'INACTIVE',  last_activity: 'Oct 19, 2023' },
+    { id: 1, name: 'Alex Rivera', tier: 'Fiber Gig 1000', avatar_url: 'https://i.pravatar.cc/40?u=alex', customer_id: 'ID: VN-8042', address: '123 Sapphire St, New York', contact: true, status: 'ACTIVE', last_activity: 'Oct 24, 2023' },
+    { id: 2, name: 'Elena Vance', tier: 'Home Basic 100', avatar_url: 'https://i.pravatar.cc/40?u=elena', customer_id: 'ID: VN-4902', address: '456 Azure Blvd, California', contact: true, status: 'SUSPENDED', last_activity: 'Oct 24, 2023' },
+    { id: 3, name: 'Marcus Thorne', tier: 'Fiber Gig 1000', avatar_url: 'https://i.pravatar.cc/40?u=marcus', customer_id: 'ID: VN-1856', address: '789 Cobalt Ave, Texas', contact: true, status: 'INACTIVE', last_activity: 'Oct 23, 2023' },
+    { id: 4, name: 'Sarah Jenkins', tier: 'Home Plus 500', avatar_url: 'https://i.pravatar.cc/40?u=sarah', customer_id: 'ID: VN-3920', address: '321 Navy Way, Florida', contact: true, status: 'ACTIVE', last_activity: 'Oct 22, 2023' },
+    { id: 5, name: 'James Okafor', tier: 'Business Pro', avatar_url: 'https://i.pravatar.cc/40?u=james', customer_id: 'ID: VN-5512', address: '88 Pacific Rd, Washington', contact: true, status: 'ACTIVE', last_activity: 'Oct 21, 2023' },
+    { id: 6, name: 'Anita Desai', tier: 'Standard 100', avatar_url: 'https://i.pravatar.cc/40?u=anita', customer_id: 'ID: VN-7703', address: '45 Ember Lane, Nevada', contact: true, status: 'INACTIVE', last_activity: 'Oct 19, 2023' },
 ];
 
 const CustomersPage = ({ customers: serverCustomers }: Props) => {
@@ -44,8 +44,8 @@ const CustomersPage = ({ customers: serverCustomers }: Props) => {
     const [statusFilter, setStatusFilter] = useState('All Statuses');
 
     const filtered = list.filter(c => {
-        const matchSearch  = c.name.toLowerCase().includes(search.toLowerCase()) || c.customer_id.toLowerCase().includes(search.toLowerCase());
-        const matchStatus  = statusFilter === 'All Statuses' || c.status === statusFilter;
+        const matchSearch = c.name.toLowerCase().includes(search.toLowerCase()) || c.customer_id.toLowerCase().includes(search.toLowerCase());
+        const matchStatus = statusFilter === 'All Statuses' || c.status === statusFilter;
         return matchSearch && matchStatus;
     });
 
