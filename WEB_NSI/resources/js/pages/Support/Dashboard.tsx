@@ -9,10 +9,10 @@ interface DashboardProps {
     tickets: Ticket[];
 }
 
-const Dashboard = ({ tickets }: DashboardProps) => {
+export default function Dashboard({ tickets }: DashboardProps) {
     return (
-        <>
-            <Head title="Dasbor Dukungan" />
+        <AdminLayout>
+            <Head title="Support Dashboard" />
             
             <div className="flex flex-col h-full">
                 {/* Top Statistics Row */}
@@ -27,10 +27,6 @@ const Dashboard = ({ tickets }: DashboardProps) => {
                     <LiveFeed />
                 </div>
             </div>
-        </>
+        </AdminLayout>
     );
-};
-
-Dashboard.layout = (page: React.ReactNode) => <AdminLayout children={page} />;
-
-export default Dashboard;
+}
