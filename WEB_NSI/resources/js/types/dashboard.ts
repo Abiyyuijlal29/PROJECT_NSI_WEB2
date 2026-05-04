@@ -1,5 +1,5 @@
 export type PriorityLevel = 'High' | 'Medium' | 'Low';
-export type TicketStatus = 'Open' | 'In Progress' | 'Resolved';
+export type TicketStatus = 'Open' | 'In Progress' | 'Resolved' | 'Buka' | 'Dalam Proses' | 'Selesai';
 
 export interface Customer {
     id: number;
