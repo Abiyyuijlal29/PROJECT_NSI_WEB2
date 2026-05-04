@@ -1,11 +1,12 @@
-import { useState } from 'react';
 import { Form, Head } from '@inertiajs/react';
+import { Button } from '@/components/ui/button';
 import InputError from '@/components/input-error';
 import TextLink from '@/components/text-link';
 import { Spinner } from '@/components/ui/spinner';
+import { register } from '@/routes';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
-import { Wifi, User, Lock, ArrowRight, Eye, EyeOff } from 'lucide-react';
+import { Wifi, User, Lock, ArrowRight } from 'lucide-react';
 
 type Props = {
     status?: string;
@@ -18,8 +19,6 @@ export default function Login({
     canResetPassword,
     canRegister,
 }: Props) {
-    const [showPassword, setShowPassword] = useState(false);
-
     return (
         <div className="min-h-screen relative flex items-center justify-center bg-[#09101f] overflow-hidden font-sans">
             <Head title="Log in" />
@@ -41,12 +40,12 @@ export default function Login({
                     <div className="w-14 h-14 bg-[#2363eb] rounded-xl flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(37,99,235,0.4)]">
                         <Wifi className="w-8 h-8 text-white" />
                     </div>
-                    <div className="flex flex-col items-center">
-                        <span className="text-white text-[1.3rem] font-bold tracking-wide">NSI</span>
-                        <span className="text-[#3b82f6] text-[1.3rem] font-bold tracking-wide">Net Satu Internews</span>
+                    <div className="text-xl font-bold tracking-wide">
+                        <span className="text-white text-[1.3rem]">VORTEX </span>
+                        <span className="text-[#3b82f6] text-[1.3rem]">NETWORKS</span>
                     </div>
                     <div className="text-[#64748b] text-[0.75rem] mt-1 font-medium tracking-wide font-sans">
-                        Portal Manajemen ISP
+                        ISP Management Portal
                     </div>
                 </div>
 
@@ -60,7 +59,7 @@ export default function Login({
                             {/* Administrator ID */}
                             <div className="grid gap-2">
                                 <label htmlFor="email" className="text-xs font-semibold text-[#8b9bb4]">
-                                    ID Administrator
+                                    Administrator ID
                                 </label>
                                 <div className="flex items-center w-full bg-[#151c2e] border border-[#28354f] rounded-lg px-4 py-3 focus-within:border-[#3b82f6] transition-colors">
                                     <User className="w-4 h-4 text-[#5f708a] mr-3" />
@@ -72,7 +71,7 @@ export default function Login({
                                         autoFocus
                                         tabIndex={1}
                                         autoComplete="email"
-                                        placeholder="Masukkan ID Anda"
+                                        placeholder="Enter your ID"
                                         className="bg-transparent border-none outline-none text-sm text-gray-200 placeholder-[#475569] w-full"
                                     />
                                 </div>
@@ -83,39 +82,30 @@ export default function Login({
                             <div className="grid gap-2">
                                 <div className="flex items-center justify-between">
                                     <label htmlFor="password" className="text-xs font-semibold text-[#8b9bb4]">
-                                        Kata Sandi
+                                        Password
                                     </label>
                                     {canResetPassword && (
                                         <TextLink
-                                            href={request().url}
+                                            href={request()}
                                             className="text-xs text-[#3b82f6] hover:text-[#60a5fa] transition-colors focus:ring-0"
                                             tabIndex={5}
                                         >
-                                            Lupa Akses?
+                                            Forgot Access?
                                         </TextLink>
                                     )}
                                 </div>
-                                <div className="flex items-center w-full bg-[#151c2e] border border-[#28354f] rounded-lg px-4 py-3 focus-within:border-[#3b82f6] transition-colors relative">
-                                    <Lock className="w-4 h-4 text-[#5f708a] mr-3 shrink-0" />
+                                <div className="flex items-center w-full bg-[#151c2e] border border-[#28354f] rounded-lg px-4 py-3 focus-within:border-[#3b82f6] transition-colors">
+                                    <Lock className="w-4 h-4 text-[#5f708a] mr-3" />
                                     <input
                                         id="password"
-                                        type={showPassword ? "text" : "password"}
+                                        type="password"
                                         name="password"
                                         required
                                         tabIndex={2}
                                         autoComplete="current-password"
                                         placeholder="••••••••"
-                                        className={`bg-transparent border-none outline-none text-sm text-gray-200 placeholder-[#475569] w-full pr-10 ${!showPassword ? 'tracking-widest' : ''}`}
+                                        className="bg-transparent border-none outline-none text-sm text-gray-200 placeholder-[#475569] tracking-widest w-full"
                                     />
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowPassword(!showPassword)}
-                                        className="absolute right-4 text-[#5f708a] hover:text-[#8b9bb4] transition-colors focus:outline-none"
-                                        tabIndex={-1}
-                                        aria-label={showPassword ? "Hide password" : "Show password"}
-                                    >
-                                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                                    </button>
                                 </div>
                                 <InputError message={errors.password} />
                             </div>
@@ -135,7 +125,7 @@ export default function Login({
                                 data-test="login-button"
                             >
                                 {processing ? <Spinner className="w-4 h-4" /> : null}
-                                <span>Otentikasi Sesi</span>
+                                <span>Authenticate Session</span>
                                 {!processing && <ArrowRight className="w-4 h-4" />}
                             </button>
                         </>
@@ -144,7 +134,7 @@ export default function Login({
 
                 <div className="mt-10 border-t border-[#1e293b] pt-6 text-center">
                     <p className="text-[9px] tracking-[0.2em] font-mono text-[#475569] uppercase">
-                        Lingkungan Operator Aman V4.2.0
+                        Secure Operator Environment V4.2.0
                     </p>
                 </div>
             </div>

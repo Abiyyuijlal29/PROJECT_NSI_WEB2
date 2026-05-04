@@ -2,15 +2,13 @@ export type PriorityLevel = 'High' | 'Medium' | 'Low';
 export type TicketStatus = 'Open' | 'In Progress' | 'Resolved' | 'Buka' | 'Dalam Proses' | 'Selesai';
 
 export interface Customer {
-    id: number;
     name: string;
     tier: string;
-    avatar_url?: string;
+    avatarUrl?: string;
 }
 
 export interface Ticket {
-    id: number;
-    ticket_number: string;
+    id: string;
     customer: Customer;
     category: string;
     priority: PriorityLevel;
